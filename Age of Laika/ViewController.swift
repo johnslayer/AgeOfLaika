@@ -25,11 +25,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonConvertToDogYears(sender: AnyObject) {
-        //first thing we should do is convert the string to an integer
-//        let stringFromTextField = textLaikasAgeInHumanYears.text
-//        let optionalIntFromTextField = stringFromTextField.toInt()
-//        let intFromOptional = optionalIntFromTextField!
-        
+
         let intFromOptional = textLaikasAgeInHumanYears.text.toInt()!
         
         
@@ -46,18 +42,20 @@ class ViewController: UIViewController {
 
     @IBAction func convertRealConversionToDogYearsPressed(sender: AnyObject) {
         let stringFromTextField = textLaikasAgeInHumanYears.text
-        let optionalIntFromTextField = stringFromTextField.toInt()
-        var intFromOptional = optionalIntFromTextField!
+        let optionalDoubleFromTextField = Double((stringFromTextField as NSString).doubleValue)
+        var realDogYears:Double
         
-        if intFromOptional <= 2 {
-            labelLaikasAgeInDogYears.hidden = false
-            var doubleFromOptional = Double(intFromOptional)
-            labelLaikasAgeInDogYears.text = "\(doubleFromOptional * 10.5)"
+        if optionalDoubleFromTextField > 2
+        {
+            realDogYears = (10.5 * 2) + (optionalDoubleFromTextField - 2) * 4
         }
-        else {
-            labelLaikasAgeInDogYears.hidden = false
-            labelLaikasAgeInDogYears.text = "\(intFromOptional * 4)"
+        else
+        {
+            realDogYears = optionalDoubleFromTextField * 10.5
         }
+        
+        labelLaikasAgeInDogYears.hidden = false
+        labelLaikasAgeInDogYears.text = "\(realDogYears)"
      
         textLaikasAgeInHumanYears.text = ""
         textLaikasAgeInHumanYears.resignFirstResponder()
